@@ -92,8 +92,17 @@ int main()
 		{
 			string line;
 
-			while (getline(cin, line) && !cin.eof())
+			while (getline(cin, line) && !cin.eof() && line != "exit")
 			{
+			    if(line == "end" && !inputvorder.empty())
+			    {
+				engine.clearAll();
+
+				auto maped = timeexec(engine,  inputvorder);
+				engine.print();
+			    }
+		            else
+			    {
 				auto splitted = split(line);
 
 				if (splitted.size() == 4)
@@ -111,6 +120,7 @@ int main()
 				}
 				else
 					cout << "Incorrect request, request format: <Trader Identifier> <Side> <Quantity> <Price>." << endl;
+			    }
 			}
 		}
 		catch (exception& ex)

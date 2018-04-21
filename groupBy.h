@@ -35,10 +35,7 @@ namespace details
 	{
 		typedef typename decay< R >::type type;
 	};
-}
 
-namespace details
-{
 	/*
 	* GroupBy
 	*/
@@ -63,10 +60,7 @@ namespace details
 			vector< Arg >
 		> return_type;
 	};
-}
 
-namespace details
-{
 	/*
 	* groupByImpl
 	*/

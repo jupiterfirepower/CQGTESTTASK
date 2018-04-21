@@ -11,7 +11,6 @@
 #include <sstream>
 #include <numeric>
 #include <cstddef>
-#include "naturalcompare.hpp"
 #include <cstdlib>
 #include <ctime>
 #include <functional>
@@ -78,14 +77,6 @@ namespace engine
 			reguest.Price > 0 && reguest.Quantity > 0 && !reguest.TradeIdentifier.empty();
 	}
 
-	struct natural_less: std::binary_function<std::string, std::string, bool> 
-	{
-		bool operator()(const Order& a, const Order& b)
-		{
-			return natural_compare(a.TradeIdentifier, b.TradeIdentifier) < 0 && a.Side <= b.Side && a.Price <= b.Price;
-		}
-	};
-
 	class SimpleOrderMatchingEngine
 	{
 
@@ -100,7 +91,7 @@ namespace engine
 			vector<Order> v;
 			move(unmaped.begin(), unmaped.end(), back_inserter(v));
 			move(correctinput.begin(), correctinput.end(), back_inserter(v));
-			sort(v.begin(), v.end(), natural_less());
+			sort(v.begin(), v.end());
 
 			map< double, vector<Order> >  actual = groupBy(v.begin(), v.end(), [](Order t) { return t.Price; });
 
@@ -110,13 +101,11 @@ namespace engine
 
 				if (inner_map.size() > 1)
 				{
-					//sort(inner_map.begin(), inner_map.end());
-
 					vector<Order> filtered;
 					vector<Order> sealed;
 
 					//std::vector<int>::iterator bound;
-  					auto bound = std::partition (inner_map.begin(), inner_map.end(), [](const auto& ord) { return ord.Side == sideBuy; });
+  					//auto bound = std::partition (inner_map.begin(), inner_map.end(), [](const auto& ord) { return ord.Side == sideBuy; });
 
 					copy_if(begin(inner_map), end(inner_map), back_inserter(filtered), [](const auto& ord) { return ord.Side == sideBuy; });
 					copy_if(begin(inner_map), end(inner_map), back_inserter(sealed), [](const auto& ord) { return ord.Side == sideSell; });

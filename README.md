@@ -1,14 +1,3 @@
-Linux Server faster than Windows Server in 5 times faster.
-
-Билл Гейтс после смерти попадёт не в рай и не в ад, а в Корзину.
-Интересно, а почему Bill Gates назвал систему "Windows" (окна), а не Gates (двери)?
-:)
-
-    Windows - made in USA.
-    Linux   - made in EUROPE.
-
-    Make America Great Again :)
-
 OS - running in VirtualBox(Windows 10 and Linux Ubuntu 17.10.1)
 Windows(Debug)
 
@@ -24,8 +13,8 @@ Windows(Release)
 Time taken by function: 54 microseconds 
 /fp:fast  /Og best result 40-41 microseconds
 
-g++ -std=c++1z -pipe -Wall -I ~/Documents/VSCODE main.cpp matchengine.hpp -m64 -Ofast -flto -march=native -funroll-loops -o matchengine
-clang++-6.0 -std=c++1z -pipe -Wall -I ~/Documents/VSCODE main.cpp -m64 -Ofast -flto -march=native -funroll-loops -o matchengine
+g++ -std=c++1z -pipe -Wall -I . main.cpp matchengine.hpp -m64 -Ofast -flto -march=native -funroll-loops -o matchengine
+clang++-6.0 -std=c++1z -pipe -Wall -I . main.cpp -m64 -Ofast -flto -march=native -funroll-loops -o matchengine
 
 Linux
 ./matchengine
@@ -40,7 +29,7 @@ T1+1@60 T7-1@60
 T7-1@60 T2-10@70 T5-3@70 T6-20@80  T1+5@30 T3+1@40 T8+10@90
 Input request data:
 
-54/22 = 2.454545 ~2.5 Linux faster than Windows everage ~ [2 - 2.5] times faster.
+54/22 = 2.454545 ~2.5 Desktop Linux faster than Desktop Windows everage ~ [2 - 2.5] times faster.
 40/([20,21,22]) ~ 1.8 ~ 2
 
 Linux faster than Windows at least 2 times
